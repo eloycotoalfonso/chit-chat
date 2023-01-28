@@ -40,47 +40,61 @@ export default class Start extends React.Component {
                             placeholder = 'Enter your username'
                         />
                         <View>
-                            <Text style = {styles.text}> Choose Background Color: </Text>
+                            <Text style = {styles.text}> Theme: </Text>
                             <View style = {styles.colorsWrapper}>
-                                <Button
+                                <TouchableOpacity
                                     title = 'black'
                                     style = {[
                                         styles.color,
-                                        black
+                                        black,
+                                        this.state.color === black.backgroundColor
+                                        ? styles.colorSelected
+                                        : {},
                                     ]}
                                     onPress = {() => this.setState({color: black.backgroundColor})}
                                 />
-                                <Button
+                                <TouchableOpacity
                                     title = 'purple'
                                     style = {[
                                         styles.color,
                                         purple,
+                                        this.state.color === purple.backgroundColor
+                                        ? styles.colorSelected
+                                        : {},
                                     ]}
                                     onPress = {() => this.setState({color: purple.backgroundColor})}
                                 />
-                                <Button
+                                <TouchableOpacity
                                     title = 'blue'
                                     style = {[
                                         styles.color,
                                         blue,
+                                        this.state.color === blue.backgroundColor
+                                        ? styles.colorSelected
+                                        : {},
                                     ]}
                                     onPress = {() => this.setState({color: blue.backgroundColor})}
                                 />
-                                <Button
+                                <TouchableOpacity
                                     title = 'green'
                                     style = {[
                                         styles.color,
                                         green,
+                                        this.state.color === green.backgroundColor
+                                        ? styles.colorSelected
+                                        : {},
                                     ]}
                                     onPress = {() => this.setState({color: green.backgroundColor})}
                                 />
                             </View>
                         </View>
-                        <Button
+                        <TouchableOpacity
                             title = 'Go to the chat'
                             style = {styles.button}
                             onPress = {() => this.props.navigation.navigate('Chat', { name: this.state.name, color: this.state.color })}
-                        />
+                        >
+                            <Text style = {styles.buttonText}> Go to the chat</Text>
+                        </TouchableOpacity>
                         
                     </View>
                 </ImageBackground>
@@ -104,7 +118,7 @@ const styles = StyleSheet.create({
 
     title: {
         fontSize: 45,
-        fontWeight: 600,
+        fontWeight: '600',
         color: '#FFFFFF'
     },
 
@@ -129,13 +143,12 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '300',
         color: '#757083',
-        // opacity: '50%',
         textAlign: 'center',
     },
 
     colorsWrapper:{
         flexDirection: 'row',
-        marginTop: '20',
+        marginTop: 20,
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
@@ -145,15 +158,34 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         width: 40,
         height: 40,
-        marginRight: 40,
+        marginRight: 20,
+        marginLeft: 20,
+    },
+    
+    colorSelected: {
+        borderStle: 'solid',
+        borderWidth: 2,
+        borderColor: '#5f5f5f',
+        borderRadius: 23,
+        width: 46,
+        height: 46,
+
     },
 
     button: {
-        fontSize: 16,
-        fontWeight: 600,
         width: '88%',
-        color: '#FFFFF',
-        // backgroundColor: '#788083',
-        color: 'black',
+        backgroundColor: '#757083',
+        height: 50,
+        width: '50%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
+    },
+
+    buttonText: {
+        padding: 10,
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: '600',
     },
 });

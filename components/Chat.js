@@ -1,6 +1,6 @@
 //Importing necesary dependencies
 import React from 'react';
-import {View, Text} from 'react-native'
+import {View, Text, StyleSheet} from 'react-native'
 
 
 //Component(s) section
@@ -14,8 +14,14 @@ export default class Chat extends React.Component {
         return (
             <View style = {[ styles.container, { backgroundColor: color}]}>
                 <Text>Chat page</Text>
-                
             </View>
         )
     }
-}
+};
+
+//Here is where we define the styles for the components
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    }
+});
