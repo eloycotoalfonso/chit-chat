@@ -5,6 +5,7 @@ This is a Chat app created with react native for movile devices and web browsers
 # Dependencies
  - React Native
  - Expo
+ - Gifted Chat
  
 # Moto of the app
 
