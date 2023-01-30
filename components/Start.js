@@ -1,6 +1,6 @@
 //Importing necesary dependencies
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Button, ImageBackground, StyleSheet, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 
 
 //define the color theme user will be able to choose
@@ -18,7 +18,7 @@ export default class Start extends React.Component {
         super(props);
         this.state = {
             name: '',
-            color: 'black.backgroundColor'
+            color: backgroundColors.blue.backgroundColor
         };
     }
 
@@ -52,6 +52,10 @@ export default class Start extends React.Component {
                                         : {},
                                     ]}
                                     onPress = {() => this.setState({color: black.backgroundColor})}
+                                    accessible = {true}
+                                    accessibilityLabel = "Set black theme"
+                                    accessibilityHint = "Let you choose the background of your screen with color black"
+                                    
                                 />
                                 <TouchableOpacity
                                     title = 'purple'
@@ -62,6 +66,9 @@ export default class Start extends React.Component {
                                         ? styles.colorSelected
                                         : {},
                                     ]}
+                                    accessible = {true}
+                                    accessibilityLabel = "Set purple theme"
+                                    accessibilityHint = "Let you choose the background of your screen with color purple"
                                     onPress = {() => this.setState({color: purple.backgroundColor})}
                                 />
                                 <TouchableOpacity
@@ -73,6 +80,9 @@ export default class Start extends React.Component {
                                         ? styles.colorSelected
                                         : {},
                                     ]}
+                                    accessible = {true}
+                                    accessibilityLabel = "Set blue theme"
+                                    accessibilityHint = "Let you choose the background of your screen with color blue"
                                     onPress = {() => this.setState({color: blue.backgroundColor})}
                                 />
                                 <TouchableOpacity
@@ -84,6 +94,9 @@ export default class Start extends React.Component {
                                         ? styles.colorSelected
                                         : {},
                                     ]}
+                                    accessible = {true}
+                                    accessibilityLabel = "Set green theme"
+                                    accessibilityHint = "Let you choose the background of your screen with color green"
                                     onPress = {() => this.setState({color: green.backgroundColor})}
                                 />
                             </View>
@@ -92,12 +105,16 @@ export default class Start extends React.Component {
                             title = 'Go to the chat'
                             style = {styles.button}
                             onPress = {() => this.props.navigation.navigate('Chat', { name: this.state.name, color: this.state.color })}
+                            accessible = {true}
+                            accessibilityLabel = "Go to chat"
+                            accessibilityHint = "Sends you to the chat screen with the current adjustments."
                         >
                             <Text style = {styles.buttonText}> Go to the chat</Text>
                         </TouchableOpacity>
                         
                     </View>
                 </ImageBackground>
+                { Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null}
             </View>
         );
     }
