@@ -1,6 +1,6 @@
 //Importing necesary dependencies
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button, ImageBackground, StyleSheet, TouchableOpacity, yarn } from 'react-native';
+import { View, Text, TextInput, ImageBackground, StyleSheet, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 
 
 //define the color theme user will be able to choose

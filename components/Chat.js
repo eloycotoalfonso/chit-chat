@@ -3,6 +3,7 @@ import React from 'react';
 import {View, Text, StyleSheet, KeyboardAvoidingView} from 'react-native';
 import { Bubble, GiftedChat } from 'react-native-gifted-chat';
 
+
 const firebase = require ('firebase');
 require('firebase/firestore');
 
@@ -15,24 +16,7 @@ export default class Chat extends React.Component {
         super();
         this.state = {
             // Here is were messages are temporarily stored.
-            messages: [                
-                // {
-                //     _id: 1,
-                //     text: 'You have now entered the chat. Tell other people you are here.',
-                //     createdAt: new Date(),
-                //     system: true,
-                // },
-                // {
-                //     _id: 2,
-                //     text: 'Hello developer',
-                //     createdAt: new Date(),
-                //     user: {
-                //         _id: 2,
-                //         name: 'React Native',
-                //         avatar: 'https://placeimg.com/140/140/any',
-                //     },
-                // },    
-            ],
+            messages: [],
             uid: 0,
             user: {
                 _id: '',
@@ -69,9 +53,9 @@ export default class Chat extends React.Component {
         .collection('messages');
         
         //Listen to authentification events
-        this.authUnsubscribe = firebase.auth().onAuthStateChanged((user) => {
+        this.authUnsubscribe = firebase.auth().onAuthStateChanged(async(user) => {
             if(!user) {
-                firebase.auth().signInAnonymously();
+                await firebase.auth().signInAnonymously();
             }
             this.setState({
                 uid: user.uid,
@@ -82,12 +66,13 @@ export default class Chat extends React.Component {
                 },
                 loggedInText: '',
             });
-        });
         
-        // Listening for collection changes
-        this.unsubscribe = this.referenceChatMessages
-        .orderBy("createdAt", "desc")
-        .onSnapshot(this.onCollectionUpdate);
+        
+            // Listening for collection changes
+            this.unsubscribe = this.referenceChatMessages
+            .orderBy("createdAt", "desc")
+            .onSnapshot(this.onCollectionUpdate);
+        });
         
     };
 
