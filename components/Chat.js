@@ -61,7 +61,7 @@ export default class Chat extends React.Component {
         let name = this.props.route.params.name;
         this.props.navigation.setOptions({ title: name })
         
-        this.getMessages();
+        // this.getMessages();
                
         //Creating a reference to the message colection
         this.referenceChatMessages = firebase
@@ -156,6 +156,9 @@ export default class Chat extends React.Component {
                 wrapperStyle = {{
                     right: {
                         backgroundColor: '#000'
+                    },
+                    left: {
+                        backgroundColor: '#fff'
                     }
                 }}
             />
