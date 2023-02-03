@@ -1,11 +1,13 @@
 //Importing necesary dependencies
 import React from 'react';
-import {View, Text, StyleSheet, KeyboardAvoidingView} from 'react-native';
+import {View, Text, StyleSheet, KeyboardAvoidingView, Platform} from 'react-native';
 import { Bubble, GiftedChat } from 'react-native-gifted-chat';
 
 
-const firebase = require ('firebase');
+const firebase = require('firebase');
 require('firebase/firestore');
+require('firebase/app');
+
 
 
 //Component(s) section
@@ -25,8 +27,10 @@ export default class Chat extends React.Component {
             },
             loggedInText: 'Please wait, you are getting logged in',
         };
-        if(!firebase.apps.length) {
-            firebase.initializeApp({
+        
+        // console.log(firebase);
+        if (!firebase.default.apps.length) {
+            firebase.default.initializeApp({
                 apiKey: "AIzaSyDPWX0zf_UtFOLu_3Nqj4_5Fb_OMvIgq3E",
                 authDomain: "chit-chat-7a7d8.firebaseapp.com",
                 projectId: "chit-chat-7a7d8",
@@ -36,26 +40,24 @@ export default class Chat extends React.Component {
             });
         }
 
-        this.referenceChatMessages = firebase.firestore().collection('messages');
-
+        this.referenceChatMessages = firebase.default.firestore().collection('messages');
     };
     
     componentDidMount () {
         //props that pass the name of the user and the background color to the chat screen
         let name = this.props.route.params.name;
-        this.props.navigation.setOptions({ title: name })
-        
-        // this.getMessages();
+        this.props.navigation.setOptions({ title: name });
                
         //Creating a reference to the message colection
-        this.referenceChatMessages = firebase
+        this.referenceChatMessages = firebase.default
         .firestore()
         .collection('messages');
         
         //Listen to authentification events
-        this.authUnsubscribe = firebase.auth().onAuthStateChanged(async(user) => {
+        this.authUnsubscribe = firebase.default.auth().onAuthStateChanged(async(user) => {
             if(!user) {
-                await firebase.auth().signInAnonymously();
+                await firebase.default.auth().signInAnonymously();
+                console.log(user);
             }
             this.setState({
                 uid: user.uid,
@@ -72,8 +74,7 @@ export default class Chat extends React.Component {
             this.unsubscribe = this.referenceChatMessages
             .orderBy("createdAt", "desc")
             .onSnapshot(this.onCollectionUpdate);
-        });
-        
+        });  
     };
 
     componentWillUnmount() {
@@ -156,12 +157,13 @@ export default class Chat extends React.Component {
         let color = this.props.route.params.color; 
         return (
             <View style = {[ styles.container, { backgroundColor: color}]}>
+                <Text>{this.state.loggedInText}</Text>
                 <GiftedChat
                     renderBubble = { this.renderBubble.bind(this)}
                     messages = {this.state.messages}
                     onSend = {messages => this.onSend(messages)}
                     user = {{
-                        _id: 1,
+                        _id: this.state.uid,
                     }}
                 />
                 {/* Funtion to avoid problems with android old devices keyboard compatibility */}
