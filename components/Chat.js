@@ -191,7 +191,7 @@ export default class Chat extends React.Component {
     // Hidding the text input bar when offline
     renderInputToolbar(props) {
         console.log(this.isConnected);
-        if (this.state.isConnected == false) {
+        if (this.isConnected == false) {
         } else {
           return(
             <InputToolbar
