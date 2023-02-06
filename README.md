@@ -6,6 +6,7 @@ This is a Chat app created with react native for movile devices and web browsers
  - React Native
  - Expo
  - Gifted Chat
+ - Google firestore Database and storage
  
 # Moto of the app
 
@@ -19,3 +20,33 @@ the latest news.
 time.
 - As a user with a visual impairment, I want to use a chat app that is compatible with a screen
 reader so that I can engage with a chat interface.
+
+# Dependencies
+
+- "@expo/webpack-config": "^0.17.2",
+- "@react-native-async-storage/async-storage": "~1.17.3",
+- "@react-native-community/masked-view": "^0.1.11",
+- "@react-native-community/netinfo": "9.3.5",
+- "@react-navigation/native": "^6.1.2",
+- "@react-navigation/stack": "^6.3.11",
+- "expo": "~47.0.12",
+- "expo-image-picker": "~14.0.2",
+- "expo-location": "~15.0.1",
+- "expo-permissions": "~14.0.0",
+- "expo-status-bar": "~1.4.2",
+- "firebase": "8.10.1",
+- "react": "18.1.0",
+- "react-dom": "18.1.0",
+- "react-native": "0.70.5",
+- "react-native-gesture-handler": "~2.8.0",
+- "react-native-gifted-chat": "^1.1.1",
+- "react-native-maps": "1.3.2",
+- "react-native-reanimated": "~2.12.0",
+- "react-native-safe-area-context": "4.4.1",
+- "react-native-screens": "~3.18.0",
+- "react-native-web": "~0.18.9"
+
+# Notes
+
+In order to use the app and develop it expo is neede to be globaly installed.
+npm install -g expo-cli
