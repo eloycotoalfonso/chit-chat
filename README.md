@@ -46,7 +46,19 @@ reader so that I can engage with a chat interface.
 - "react-native-screens": "~3.18.0",
 - "react-native-web": "~0.18.9"
 
-# Notes
+# Set Up
+- Download the project with: gh repo clone eloycotoalfonso/chit-chat // https://github.com/eloycotoalfonso/chit-chat.git
+- Install the project (Due to some incombatibilies with npm, it is highly recommended to use yarn.)
+- Run npm start
 
-In order to use the app and develop it expo is neede to be globaly installed.
+### If you want to use your own database:
+- Open a firestore account with your google credentials.
+- Create a database (normal database, not real time one).
+- Enhable anonymous authorization.
+- Allow read and write from external sources under Database - rules, and changing "allow read, write: if false;" for "allow read, write: if request.time > timestamp.date(2020, 9, 10);"
+- Copy your database configuration in the initializeApp function in the Chat.js file.
+
+### Notes
+- In order to use the app and develop it expo is neede to be globaly installed before running npm start.
 npm install -g expo-cli
+- Due to a continious development, depencies version might be depecated. Check out the newer versions released.
